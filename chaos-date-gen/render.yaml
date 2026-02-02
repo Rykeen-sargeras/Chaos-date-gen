@@ -1,14 +1,7 @@
-# Render Blueprint - Auto-configure deployment
-# https://render.com/docs/blueprint-spec
-
 services:
-  # Static Site (recommended, free tier)
   - type: web
     name: chaos-date-gen
-    env: static
-    buildCommand: ""
-    staticPublishPath: .
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: public, max-age=3600
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
