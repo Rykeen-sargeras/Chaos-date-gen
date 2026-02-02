@@ -288,231 +288,490 @@
 <a id="downloadLink"></a>
 
 <script>
+// ============================================
+// CONFIGURATION
+// ============================================
 const CONFIG = {
     useLocalImages: true,
     hosts: [
-        { name: "Albert", image: "Albert.png", fallback: "Albert" },
-        { name: "ALR", image: "ALR.png", fallback: "ALR" },
-        { name: "A-Mac", image: "A-Mac.png", fallback: "AMac" },
-        { name: "Angie", image: "Angie.png", fallback: "Angie" },
-        { name: "Batgorl", image: "Batgorl.png", fallback: "Batgorl" },
-        { name: "Billy", image: "Billy.png", fallback: "Billy" },
-        { name: "Boogie", image: "Boogie.png", fallback: "Boogie" },
-        { name: "Cherry", image: "Cherry.png", fallback: "Cherry" },
-        { name: "Gidgy", image: "Gidgy.png", fallback: "Gidgy" },
-        { name: "Glamy", image: "Glamy.png", fallback: "Glamy" },
-        { name: "Grimm", image: "Grimm.png", fallback: "Grimm" },
-        { name: "Ice", image: "Ice.png", fallback: "Ice" },
-        { name: "Jaffee", image: "Jaffee.png", fallback: "Jaffee" },
-        { name: "Jeff", image: "Jeff.png", fallback: "Jeff" },
-        { name: "Josh", image: "Josh.png", fallback: "Josh" },
-        { name: "Ken", image: "Ken.png", fallback: "Ken" },
-        { name: "Knightmare", image: "Knightmare.png", fallback: "Knightmare" },
-        { name: "Lici", image: "Lici.png", fallback: "Lici" },
-        { name: "Lucy", image: "Lucy.png", fallback: "Lucy" },
-        { name: "Mel", image: "Mel.png", fallback: "Mel" },
-        { name: "NickMTV", image: "NickMTV.png", fallback: "NickMTV" },
-        { name: "Pesci", image: "Pesci.png", fallback: "Pesci" },
-        { name: "Phantom", image: "Phantom.png", fallback: "Phantom" },
-        { name: "Scooter", image: "Scooter.png", fallback: "Scooter" },
-        { name: "Smooch", image: "Smooch.png", fallback: "Smooch" },
-        { name: "Stake", image: "Stake.png", fallback: "Stake" },
-        { name: "Sweet_Tea", image: "Sweet_Tea.png", fallback: "SweetTea" },
-        { name: "Tech", image: "Tech.png", fallback: "Tech" },
-        { name: "Tina", image: "Tina.png", fallback: "Tina" },
-        { name: "Tommy", image: "Tommy.png", fallback: "Tommy" },
-        { name: "Twiggy", image: "Twiggy.png", fallback: "Twiggy" },
-        { name: "WonderWoman", image: "WonderWoman.png", fallback: "WonderWoman" },
-        { name: "Xylie", image: "Xylie.png", fallback: "Xylie" },
-        { name: "Yomama", image: "Yomama.png", fallback: "Yomama" },
-        { name: "Zey", image: "Zey.png", fallback: "Zey" },
-        { name: "Zita", image: "Zita.png", fallback: "Zita" },
+        { name: "Albert", image: "Albert.png" },
+        { name: "ALR", image: "ALR.png" },
+        { name: "A-Mac", image: "A-Mac.png" },
+        { name: "Angie", image: "Angie.png" },
+        { name: "Batgorl", image: "Batgorl.png" },
+        { name: "Billy", image: "Billy.png" },
+        { name: "Boogie", image: "Boogie.png" },
+        { name: "Cherry", image: "Cherry.png" },
+        { name: "Gidgy", image: "Gidgy.png" },
+        { name: "Glamy", image: "Glamy.png" },
+        { name: "Grimm", image: "Grimm.png" },
+        { name: "Ice", image: "Ice.png" },
+        { name: "Jaffee", image: "Jaffee.png" },
+        { name: "Jeff", image: "Jeff.png" },
+        { name: "Josh", image: "Josh.png" },
+        { name: "Ken", image: "Ken.png" },
+        { name: "Knightmare", image: "Knightmare.png" },
+        { name: "Lici", image: "Lici.png" },
+        { name: "Lucy", image: "Lucy.png" },
+        { name: "Mel", image: "Mel.png" },
+        { name: "NickMTV", image: "NickMTV.png" },
+        { name: "Pesci", image: "Pesci.png" },
+        { name: "Phantom", image: "Phantom.png" },
+        { name: "Scooter", image: "Scooter.png" },
+        { name: "Smooch", image: "Smooch.png" },
+        { name: "Stake", image: "Stake.png" },
+        { name: "Sweet_Tea", image: "Sweet_Tea.png" },
+        { name: "Tech", image: "Tech.png" },
+        { name: "Tina", image: "Tina.png" },
+        { name: "Tommy", image: "Tommy.png" },
+        { name: "Twiggy", image: "Twiggy.png" },
+        { name: "WonderWoman", image: "WonderWoman.png" },
+        { name: "Xylie", image: "Xylie.png" },
+        { name: "Yomama", image: "Yomama.png" },
+        { name: "Zey", image: "Zey.png" },
+        { name: "Zita", image: "Zita.png" },
     ],
     imageBasePath: "assets/hosts/"
 };
 
-const STORY_PARTS = {
-    openings: [
-        "Cupid was drunk on the job again.",
-        "Love works in mysterious (and stupid) ways.",
-        "The heart wants what it wants. The restraining order says otherwise.",
-        "Some love stories are written in the stars. This one was written on a napkin at Denny's.",
-        "They say love is blind. This love is also deaf and possibly concussed.",
-        "When Cupid's arrow hits, it doesn't always hit right.",
-        "The universe conspired to bring them together. The universe was having a bad day.",
-        "Every love story is beautiful. This one is... something.",
-        "Romeo and Juliet had nothing on this disaster.",
-        "Hearts collided. So did their criminal records.",
-        "It was love at first restraining order.",
-        "Fate works in mysterious ways. This was just chaotic."
-    ],
-    activityPrefixes: [
-        "romantic", "candlelit", "disastrous", "forbidden", "chaotic",
-        "unhinged", "midnight", "cursed", "viral", "weaponized",
-        "improvised", "apocalyptic", "bottomless", "haunted", "competitive"
-    ],
-    activityCores: [
-        "wine tasting", "couples therapy", "salsa dancing", "escape room",
-        "pottery class", "karaoke battle", "cooking class", "sunset watching",
-        "love poem reading", "chocolate fountain diving", "speed dating",
-        "astrology reading", "couples yoga", "tandem skydiving", "proposal practice",
-        "wedding crashing", "divorce celebration", "exorcism", "tax fraud",
-        "goat yoga", "seance", "knife juggling", "identity theft workshop",
-        "bread making", "axe throwing", "tarot reading", "ghost hunting"
-    ],
-    activitySuffixes: [
-        "at an Olive Garden", "in a Costco parking lot", "during a full moon",
-        "at an ex's wedding", "in international waters", "at couples therapy",
-        "on a sinking boat", "in the ball pit at Chuck E. Cheese", "at IKEA",
-        "during a blackout", "in a confessional booth", "at a timeshare presentation",
-        "in the Taco Bell drive-thru", "at the DMV", "in a Waffle House at 3 AM",
-        "behind a Wendy's dumpster", "at a funeral", "during a meteor shower"
-    ],
-    escalations: [
-        "Things got spicy when {host} confessed their love... to the waiter.",
-        "The mood shifted when {host} started ugly crying into the {food}.",
-        "Romance died when the {object} incident happened.",
-        "Cupid would be ashamed. {host} proposed with a {object}.",
-        "{host}'s ex showed up. Then their other ex. Then a third.",
-        "The night took a turn when {host} revealed their collection of {object}s.",
-        "Security escorted them out after the {object} situation.",
-        "Their Uber driver is now a witness in the investigation.",
-        "{host} got down on one knee... to tie their shoe and run away.",
-        "The chef came out to personally ask them to never return.",
-        "A {animal} got loose. Nobody knows who brought it.",
-        "The fire department was called. Twice."
-    ],
-    objects: [
-        "heart-shaped box of regret", "wilted rose", "restraining order",
-        "engagement ring from a vending machine", "ex's hoodie", "divorce papers",
-        "emotional baggage", "crying toddler", "someone else's wedding cake",
-        "taxidermied dove", "couples therapy bill", "love poem in Comic Sans",
-        "Build-A-Bear breakup letter", "matching tattoo removal quote", "catfish photos",
-        "haunted engagement ring", "cursed Valentine's card", "body pillow"
-    ],
-    foods: [
-        "heart-shaped pizza", "chocolate fondue", "bottomless mimosas",
-        "couples spaghetti", "oysters", "strawberries", "wedding cake samples",
-        "gas station roses", "Olive Garden breadsticks", "melted ice cream cake"
-    ],
-    animals: [
-        "emotional support peacock", "feral raccoon", "angry goose",
-        "escaped ferret", "judgmental cat", "confused llama", "therapy alpaca"
-    ],
-    outcomes: {
-        disaster: [
-            "Cupid has filed a formal complaint. Love is dead. {host2} has blocked everyone involved.",
-            "The restraining order is mutual, but the trauma bond is eternal.",
-            "They've both sworn off love forever. They'll meet again at the same bar next Friday.",
-            "The only thing they're committed to now is therapy. Separately.",
-            "Love didn't win today. Neither did anyone's dignity.",
-            "Their love story ends not with a bang, but with a blocked number and a Yelp review."
-        ],
-        chaotic_good: [
-            "Against all odds and several felonies, they're planning date two. 💕",
-            "It was chaos. It was beautiful. The wedding's in Vegas next month.",
-            "They found love in a hopeless place (the county jail waiting room). True romance.",
-            "Somehow, miraculously, disgustingly... they're perfect for each other.",
-            "Cupid is confused but supportive. Love wins in the weirdest way possible.",
-            "They're terrible influences on each other and that's exactly what they both needed. 💘"
-        ],
-        ambiguous: [
-            "It's complicated. Their relationship status? Also complicated. Everything is complicated.",
-            "They exchanged numbers. And lawyers. The future is uncertain but entertaining.",
-            "The {object} will haunt them both forever, but maybe that's romantic?",
-            "Neither knows what they are, but they've agreed to circle back after the trial.",
-            "Love? Maybe. Chaos? Definitely. Regrets? Ask again tomorrow.",
-            "Cupid shot his shot. It ricocheted. The results are inconclusive."
-        ]
-    },
-    quirks: [
-        "The restaurant is pressing charges AND writing a Yelp response.",
-        "Their love language is apparently 'public disturbance.'",
-        "A violinist quit mid-song and left.",
-        "The couple at the next table is now also broken up.",
-        "Someone's mother was called. She's on her way with reinforcements.",
-        "Local news is calling it 'the most romantic arrest of the year.'",
-        "A flash mob started accidentally during the chaos.",
-        "The chocolate fountain will never be the same.",
-        "Their Uber rating dropped to 2.1 stars.",
-        "Insurance won't cover any of it."
-    ]
-};
+// ============================================
+// ANTI-REPEAT SYSTEM - Deck-based shuffling
+// ============================================
+let hostDeck = [];
+let storyDeck = [];
+let recentHosts = []; // Track last 10 hosts used
+const MAX_RECENT_HOSTS = 10;
 
-let usedActivities = new Set();
-let history = [];
-const MAX_HISTORY = 20;
+function shuffleArray(arr) {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
 
-function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function resetHostDeck() {
+    hostDeck = shuffleArray(CONFIG.hosts);
+}
 
-function getHostImage(host) {
-    return CONFIG.useLocalImages 
-        ? `${CONFIG.imageBasePath}${host.image}`
-        : `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${host.fallback}&backgroundColor=1e293b`;
+function getNextHost() {
+    if (hostDeck.length === 0) resetHostDeck();
+    
+    // Try to find a host not in recent list
+    let attempts = 0;
+    let host;
+    do {
+        if (hostDeck.length === 0) resetHostDeck();
+        host = hostDeck.pop();
+        attempts++;
+    } while (recentHosts.includes(host.name) && attempts < 20 && hostDeck.length > 0);
+    
+    // Track recent hosts
+    recentHosts.push(host.name);
+    if (recentHosts.length > MAX_RECENT_HOSTS) recentHosts.shift();
+    
+    return host;
 }
 
 function selectTwoHosts() {
-    const shuffled = [...CONFIG.hosts].sort(() => Math.random() - 0.5);
-    return [shuffled[0], shuffled[1]];
+    const host1 = getNextHost();
+    let host2 = getNextHost();
+    
+    // Make sure they're different
+    while (host2.name === host1.name) {
+        host2 = getNextHost();
+    }
+    
+    return [host1, host2];
 }
 
-function generateActivity() {
-    let activity, attempts = 0;
-    do {
-        const prefix = randomFrom(STORY_PARTS.activityPrefixes);
-        const core = randomFrom(STORY_PARTS.activityCores);
-        const suffix = randomFrom(STORY_PARTS.activitySuffixes);
-        const structures = [
-            `${prefix} ${core} ${suffix}`,
-            `${core} ${suffix}`,
-            `${prefix} ${core}`,
-            `The ${core} incident ${suffix}`
-        ];
-        activity = randomFrom(structures);
-        attempts++;
-    } while (usedActivities.has(activity) && attempts < 50);
-    
-    if (attempts < 50) usedActivities.add(activity);
-    if (usedActivities.size > 100) usedActivities.clear();
-    return activity.charAt(0).toUpperCase() + activity.slice(1);
+// ============================================
+// 100+ COMPLETE STORY SCENARIOS
+// Stories are tied to activities for coherence
+// ============================================
+const COMPLETE_SCENARIOS = [
+    // === DIRTY/UNHINGED ADULT HUMOR ===
+    {
+        activity: "Naked Hot Yoga",
+        story: "{host1} thought naked hot yoga would be 'spiritually freeing.' {host2} agreed until they realized the room was 110 degrees and everyone could see EVERYTHING. {host1} tried to do downward dog and accidentally made eye contact with {host2}'s entire situation. The instructor asked them to 'breathe through the discomfort' while {host2} was actively dissociating. They're now bonded by mutual trauma and have seen things that cannot be unseen."
+    },
+    {
+        activity: "Adult Toy Shopping",
+        story: "{host1} suggested they browse the 'couples section' at the adult store. {host2} panicked and loudly asked the employee what a 'rabbit' was. The employee gave a 45-minute demonstration while {host1} filmed for their Instagram story. {host2} accidentally turned something on and couldn't figure out how to turn it off. They had to buy it. It's still buzzing in {host2}'s car."
+    },
+    {
+        activity: "Strip Poker Tournament",
+        story: "What started as innocent strip poker ended with {host1} wearing nothing but a cowboy hat and {host2} in just socks. Neither knows how to play poker. They were both bluffing the entire time. The Uber driver refused to pick them up. {host1}'s neighbor called the HOA. Somehow, {host2} still has the cowboy hat."
+    },
+    {
+        activity: "Tantric Breathing Workshop",
+        story: "{host1} read about tantric breathing online and convinced {host2} to try it. Fifteen minutes in, {host2} hyperventilated and passed out on {host1}'s lap. The ambulance arrived to find them in a very compromising position. {host1} had to explain to the EMTs that 'nothing weird was happening' while {host2} regained consciousness moaning. The neighbors definitely heard."
+    },
+    {
+        activity: "Body Painting Class",
+        story: "The body painting class seemed artsy and romantic until {host1} discovered {host2} is EXTREMELY ticklish. Paint went everywhere. {host2} laughed so hard they peed a little. {host1} tried to paint abs on themselves and it looked like a sad tic-tac-toe board. The instructor called it 'avant-garde' and cried."
+    },
+    {
+        activity: "Couple's Pole Dancing",
+        story: "{host1} wanted to try pole dancing to 'spice things up.' {host2} got stuck upside down on the pole for 20 minutes. {host1} tried to be sexy but looked like a confused sloth. The fire department was called. The calendar is now evidence. {host2}'s chiropractor has questions."
+    },
+    {
+        activity: "Skinny Dipping Adventure",
+        story: "Skinny dipping at midnight seemed romantic until {host1} and {host2} realized they'd jumped into a stranger's pool. The homeowner came out with a flashlight and a shotgun. They ran naked through three backyards. {host1} lost their underwear in a rosebush. A Ring doorbell captured everything. It has 47,000 views."
+    },
+    {
+        activity: "Fifty Shades Book Club",
+        story: "{host1} started a Fifty Shades book club. Just the two of them. Out loud. In a Starbucks. {host2} read the spicy parts with TOO much enthusiasm. A barista quit on the spot. An elderly woman asked for the book title. They're now banned from that location but the old lady DM'd them on Instagram."
+    },
+    {
+        activity: "Sensual Cooking Class",
+        story: "The sensual cooking class promised to 'ignite passion through food.' {host1} tried to seductively eat a banana and choked. {host2} attempted to lick chocolate off a strawberry and dropped it down their shirt. The chef started crying and said they'd 'ruined his art.' Dinner was burnt. The only thing ignited was the smoke alarm."
+    },
+    {
+        activity: "Handcuff Escape Room",
+        story: "{host1} bought novelty handcuffs for the escape room date. The key broke. {host2} and {host1} were stuck together for 4 hours. They had to pee together. They had to eat pizza together. The locksmith charged $200 and took pictures 'for his blog.' {host2}'s wrists are still bruised but they've never been closer."
+    },
+
+    // === SILLY/ABSURD ADULT HUMOR ===
+    {
+        activity: "Competitive Eating at Hooters",
+        story: "{host1} challenged {host2} to a wing-eating contest at Hooters. {host2} ate 47 wings and threw up in a decorative plant. {host1} got hot sauce in their eye and cried for 30 minutes. The waitress asked if they were okay and {host1} said 'this is the best date ever' while sobbing. {host2} is still finding wing sauce in unexpected places."
+    },
+    {
+        activity: "Drunk IKEA Furniture Building",
+        story: "Building IKEA furniture drunk seemed fun until {host1} lost all the screws in the couch cushions and {host2} assembled the bookshelf inside out. They now own something called a 'BJÖRKUDDEN' that functions as neither a table nor a chair. {host1} called it 'modern art.' {host2} called their therapist."
+    },
+    {
+        activity: "3 AM Waffle House Philosophy",
+        story: "{host1} and {host2} ended up at Waffle House at 3 AM discussing the meaning of life with a waitress named Big Linda. {host2} cried into their hash browns about their childhood. {host1} tipped $100 and left their number. Big Linda became their couples counselor. She's surprisingly good at it."
+    },
+    {
+        activity: "Chuck E. Cheese Bar Crawl",
+        story: "Getting drunk at Chuck E. Cheese was {host1}'s idea. {host2} won 3,000 tickets and screamed 'I'M A CHAMPION' while children stared. {host1} got into a fight with the animatronic band. Security escorted them out but they kept their tickets. They now own 47 plastic spider rings and a giant stuffed banana. Worth it."
+    },
+    {
+        activity: "Walmart Wedding Shopping",
+        story: "{host1} and {host2} went to Walmart at 2 AM and pretended to shop for their wedding. {host2} tried on a shower curtain as a veil. {host1} got down on one knee with a Ring Pop. An employee started crying and said it was 'the most beautiful thing she'd ever seen.' They're now registered at Walmart. It's not ironic anymore."
+    },
+    {
+        activity: "Drive-Thru Marathon",
+        story: "{host1} suggested hitting every drive-thru in town in one night. By the 7th one, {host2} was holding a McFlurry, Frosty, and a taco simultaneously while {host1} drove with their knees. They got food poisoning together. They threw up together. They fell in love somewhere between Arby's and regret."
+    },
+    {
+        activity: "Sober Karaoke Battle",
+        story: "{host1} and {host2} did karaoke completely sober. It was worse than drunk karaoke. {host1} chose 'My Heart Will Go On' and forgot every word after 'near.' {host2} performed 'WAP' in front of someone's grandparents. The DJ asked them to leave but also said it was 'iconic.' They're banned but legendary."
+    },
+    {
+        activity: "Target After Dark",
+        story: "Target at 10 PM seemed innocent until {host1} started racing {host2} in the motorized carts. {host2} crashed into a display of decorative pillows and just laid there. {host1} bought $300 of things they didn't need including a canoe. Neither has a car that fits a canoe. The canoe lives in the apartment now."
+    },
+    {
+        activity: "Pet Store Puppy Date",
+        story: "{host1} took {host2} to the pet store 'just to look.' {host2} held a puppy and immediately started crying. {host1} also started crying. They now own a dog named Reginald who costs more than their rent. Neither regrets it. Reginald is their whole personality now."
+    },
+    {
+        activity: "24-Hour Diner Stakeout",
+        story: "{host1} and {host2} sat in a Denny's for 6 hours making up backstories for every customer. They decided the man in booth 4 was a spy. He was actually an accountant named Gerald. Gerald joined their game. Gerald is now in their group chat. Gerald brings homemade cookies to hangouts."
+    },
+    // === MORE UNHINGED SCENARIOS ===
+    {
+        activity: "Haunted Sex Shop Tour",
+        story: "The 'haunted' adult store tour was {host2}'s idea. The ghost supposedly lives in the back room. {host1} screamed when something vibrated and it was just a display. {host2} asked the ghost for relationship advice. The ghost (played by employee Dave) said they 'seem toxic but in a hot way.' Dave was right."
+    },
+    {
+        activity: "Bottomless Mimosa Disaster",
+        story: "Bottomless mimosas for brunch turned into {host1} standing on a chair giving a TED talk about their ex. {host2} was live-tweeting the whole thing. The waiter cut them off after mimosa #11. {host1} cried. {host2} tipped 50% and apologized. The restaurant follows them on Instagram now."
+    },
+    {
+        activity: "Spray Tan Couples Experience",
+        story: "The couples spray tan seemed romantic until {host1} sneezed mid-spray and got stripes. {host2} forgot to wear the provided underwear and now has a very clear tan line where underwear should be. They look like bronzed zebras. The photos are blackmail material. They're both wearing turtlenecks for the next two weeks."
+    },
+    {
+        activity: "Sex Ed Class (For Adults)",
+        story: "{host1} signed them up for adult sex ed 'as a joke.' The instructor used puppets. Anatomically correct puppets. {host2} had to demonstrate proper communication on Mr. Banana. {host1} failed the quiz. They were the only ones there under 60. Ethel from the class texts them tips now. Ethel is surprisingly kinky."
+    },
+    {
+        activity: "Escape Room: The Bedroom",
+        story: "The bedroom-themed escape room promised 'romantic puzzles.' The first clue was hidden in a fake drawer of underwear. {host2} got too competitive and forgot about romance entirely. {host1} found a clue that said 'safe word is banana' and panicked. They escaped in 47 minutes but emotionally they're still trapped."
+    },
+    {
+        activity: "Drunk Amazon Shopping",
+        story: "{host1} and {host2} got drunk and Amazon shopped together. {host2} ordered a 6-foot teddy bear. {host1} bought a bidet 'for the experience.' They also somehow purchased a sword, 47 pool noodles, and a framed photo of Danny DeVito. Everything arrived. They kept the DeVito photo. It watches over them now."
+    },
+    {
+        activity: "Nude Beach Miscommunication",
+        story: "{host1} said 'clothing optional beach' and {host2} heard 'normal beach.' {host2} showed up fully clothed and {host1} was just... out there. {host2} tried to act casual while surrounded by naked strangers. {host1} made friends with a naked guy named Hank. Hank is now invited to Thanksgiving. {host2} is still processing."
+    },
+    {
+        activity: "Couples Waxing Session",
+        story: "Getting waxed together was supposed to be 'bonding.' {host1} cried actual tears. {host2} laughed so hard they got wax stuck in places wax should never be. The waxer asked if they wanted to reschedule their wedding. They're not engaged. They are now considering it though, trauma bonds are powerful."
+    },
+    {
+        activity: "Hot Tub Time Machine Night",
+        story: "Renting a hot tub for the night seemed relaxing until {host1} put in too many bath bombs. The water turned purple. Then green. Then started fizzing. {host2} thought they were being poisoned. The maintenance guy said it was the worst thing he'd seen in 30 years. They did not get their deposit back."
+    },
+    {
+        activity: "Tinder Profile Photo Shoot",
+        story: "{host1} offered to take {host2}'s Tinder photos. The photos were so good {host2} got 400 matches in one hour. {host1} got jealous. {host2} realized they didn't want to match with anyone except {host1}. They deleted Tinder. The photos live on {host1}'s phone as a threat."
+    },
+    {
+        activity: "Vegas Drive-Thru Chapel",
+        story: "What happens in Vegas was supposed to stay in Vegas but {host1} and {host2} woke up with matching rings and a marriage certificate signed by 'Elvis.' They're not sure if it's legal. They're not sure they care. {host2}'s mom found out from Instagram. She's either furious or planning a real wedding. The Elvis impersonator follows them now."
+    },
+    {
+        activity: "Couples Massage Gone Wrong",
+        story: "The couples massage was going great until {host1} fell asleep and started snoring. Then sleep-talking. About their ex. By name. {host2} heard everything. The masseuse heard everything. {host1} woke up to complete silence and {host2}'s thousand-yard stare. They drove home without speaking. They've never discussed it."
+    },
+    {
+        activity: "Adult Bounce House Party",
+        story: "{host1} rented an adult bounce house for {host2}'s birthday. {host2} bounced so hard they threw up. {host1} bounced into a wall and got a bloody nose. The bounce house is now evidence in a lawsuit. The party was still the best one {host2} ever had. Worth every penny. Every single penny."
+    },
+    {
+        activity: "Lingerie Football Watch Party",
+        story: "{host1} organized a lingerie football watch party for two. They made nachos, they made margaritas, they made poor decisions. {host2} got way too invested in the game and started a fight with the TV. {host1} had to explain to neighbors why {host2} was screaming 'HOLDING, THAT'S HOLDING' at midnight."
+    },
+    {
+        activity: "Tequila Tasting Tuesday",
+        story: "Tequila Tuesday started classy. It did not stay classy. By tequila #5, {host1} was teaching {host2} the worm on the bar floor. By #8, they were both on the floor. The bartender took photos. Those photos are now the bartender's screen saver. {host1} and {host2} are regulars now. Legends, even."
+    },
+    // === CHAOTIC ROMANTIC DISASTERS ===
+    {
+        activity: "Proposal Practice Run",
+        story: "{host1} asked {host2} to help practice their proposal speech for 'someone else.' {host2} cried. {host1} cried. Turns out {host1} was practicing for {host2} the whole time. The waiter started a slow clap. Someone filmed it. It went viral. Their parents found out via TikTok. The comment section is fighting."
+    },
+    {
+        activity: "IKEA Relationship Test",
+        story: "They say if you can survive IKEA, you can survive anything. {host1} and {host2} did not survive IKEA. They got lost in the warehouse section for 2 hours. {host2} threatened to leave {host1} by the MALM dressers. {host1} stress-ate 7 Swedish meatballs. They left with nothing they came for and everything they didn't."
+    },
+    {
+        activity: "Painting Each Other Nude",
+        story: "{host1} suggested they paint each other like 'French girls.' Neither can paint. {host2}'s portrait of {host1} looked like a melting potato. {host1}'s portrait of {host2} had three arms. They framed both paintings. They're displayed proudly. Guests are too polite to ask questions."
+    },
+    {
+        activity: "Tantric Yoga Retreat",
+        story: "The weekend tantric yoga retreat promised 'deep connection.' {host1} pulled a hamstring trying to do a position called 'The Flowering Lotus.' {host2} accidentally made eye contact with a stranger during breathwork and panicked. They left early. The connection they found was their shared hatred of yoga."
+    },
+    {
+        activity: "Romantic Fishing Trip",
+        story: "{host1} planned a romantic fishing trip. {host2} caught nothing but a old boot and an existential crisis. {host1} fell in the lake trying to be cute. {host2} laughed so hard they peed. A fish jumped out of the water and slapped {host1} in the face. Best date ever. No fish were harmed. {host1} was."
+    },
+    {
+        activity: "Pottery Class (Ghost Style)",
+        story: "Recreating the Ghost pottery scene seemed sexy until {host1} got clay in {host2}'s hair. And eyes. And somehow ears. The pot looked like a deformed ashtray. They kept it anyway. It sits on the mantle. They tell guests it's 'modern art.' The guests know it's not. The pot knows it's not."
+    },
+    {
+        activity: "Salsa Dancing Disaster",
+        story: "Salsa class was {host2}'s idea. {host1} has no rhythm. Zero. Negative rhythm. They stepped on {host2}'s feet 47 times. The instructor asked if {host1} was 'doing this on purpose.' {host2} still has the bruises. They've agreed to never speak of salsa again. Ever."
+    },
+    {
+        activity: "Wine & Cheese Pairing",
+        story: "Wine and cheese pairing was meant to be sophisticated. {host1} pronounced 'Brie' as 'Bry' and 'Gouda' as 'Goo-dah.' {host2} got wine-drunk and started rating cheeses like they were on Tinder. 'This cheddar is a solid 7, but he's not looking for anything serious.' The sommelier left the room. He never came back."
+    },
+    {
+        activity: "Stargazing Gone Wrong",
+        story: "Stargazing in a field was romantic until {host1} sat in something wet. And mysterious. And alive. {host2} tried to identify constellations but just made up names like 'Big Sexy Dipper.' A farmer came out and said they were on private property. They ran. {host1} lost a shoe. That shoe is still in that field."
+    },
+    {
+        activity: "DIY Valentine's Dinner",
+        story: "{host1} made Valentine's dinner from scratch. {host2} called poison control. The steak was somehow both burnt AND raw. The salad had something moving in it. Dessert was store-bought but {host1} lied. {host2} knew. They pretended it was homemade. They ordered DoorDash at midnight. Love is lying about dessert."
+    },
+    {
+        activity: "Matching Tattoo Trip",
+        story: "{host1} convinced {host2} to get matching tattoos. They were sober. Mostly. The tattoos say 'soup' and 'spoon' respectively. Why? Neither remembers. The tattoo artist tried to talk them out of it three times. They did not listen. They are now soup and spoon forever. No regrets. Some regrets. Mostly no."
+    },
+    {
+        activity: "Roller Skating Rink Date",
+        story: "Roller skating was nostalgic until {host1} ate absolute floor. Three times. {host2} laughed so hard they snorted. Then {host2} also ate floor. They held hands for balance and just... fell together. The 12-year-olds skating circles around them had no mercy. The DJ played 'I Will Always Love You' as they limped out."
+    },
+    {
+        activity: "Pumpkin Patch Proposal",
+        story: "{host1} planned to propose at the pumpkin patch. {host2} was attacked by a goose. {host1} tried to fight the goose. The goose won. The proposal happened in the urgent care parking lot. {host2} said yes while getting a tetanus shot. The goose wasn't invited to the wedding but showed up anyway."
+    },
+    {
+        activity: "Murder Mystery Dinner",
+        story: "The murder mystery dinner got too real when {host1} accused {host2} of 'always being suspicious.' {host2} countered with 'at least I don't chew with my mouth open.' The actors stopped acting. The audience was invested. They solved their relationship issues in front of 50 strangers. The murderer was the butler. Nobody cared."
+    },
+    {
+        activity: "Couple's Cooking Competition",
+        story: "{host1} and {host2} competed to make the best dish. {host1} made 'deconstructed' ramen (it was uncooked noodles on a plate). {host2} set off the smoke alarm twice. The judges (their roommates) gave both dishes 0 points. They ordered Chinese food and called it a tie. The kitchen will never be the same."
+    },
+    // === ABSURD CHAOS ===
+    {
+        activity: "Costco Date Marathon",
+        story: "{host1} and {host2} spent 5 hours in Costco. They ate 14 free samples. {host2} got lost in the toilet paper section for 20 minutes and panicked. {host1} impulse-bought a kayak. They don't live near water. The kayak is in their living room now. It's a conversation piece. It's also a problem."
+    },
+    {
+        activity: "ASMR Recording Session",
+        story: "Recording ASMR together seemed intimate until {host1}'s stomach growled directly into the microphone. Then {host2} sneezed. The video got 2 million views as a 'fail compilation.' They're internet famous for the wrong reasons. Their parents saw it. Thanksgiving is going to be awkward."
+    },
+    {
+        activity: "Couple's Astrology Reading",
+        story: "The astrologer said {host1} and {host2} were 'cosmically incompatible' and suggested they break up immediately. {host1} cried. {host2} argued with the astrologer. The astrologer called {host2} 'such a Scorpio.' {host2} doesn't know what that means but took it personally. They're still together out of spite."
+    },
+    {
+        activity: "Extreme Couponing Date",
+        story: "{host1} took {host2} extreme couponing. {host2} got way too into it. They now own 847 rolls of toilet paper and 63 bottles of mustard. The cashier called a manager. The manager called security. They saved $412 and lost their dignity. {host2} has a coupon binder now. It's organized by color. This is their life."
+    },
+    {
+        activity: "Psychic Reading Couples Session",
+        story: "The psychic told {host1} they were married in a past life. To a goat. {host2} couldn't stop laughing. {host1} wanted to know more about the goat. The psychic refused to elaborate. {host2} now calls {host1} 'my little goat spouse.' {host1} has embraced it. The psychic blocked their number."
+    },
+    {
+        activity: "Escape Room: Family Drama Edition",
+        story: "The escape room was family-drama themed. The clues were about resolving childhood trauma. {host1} started actually crying about their parents. {host2} unlocked a box that said 'forgiveness' and lost it emotionally. The game master didn't know what to do. They escaped in 38 minutes but the emotional damage was permanent."
+    },
+    {
+        activity: "Zoo After Dark Event",
+        story: "Zoo After Dark was supposed to be romantic. {host1} made eye contact with a gorilla and had a breakdown. {host2} got chased by a peacock. A flamingo bit {host1}'s ear. They bonded in the gift shop buying overpriced stuffed animals. The stuffed flamingo is named 'Kevin' and sleeps between them."
+    },
+    {
+        activity: "Silent Disco Dating",
+        story: "Silent disco was {host2}'s idea. They forgot {host1} has no rhythm. Without music, everyone could hear {host1} singing badly. Very badly. {host2} pretended not to know them. {host1} started doing the Macarena. There was no Macarena playing. {host2} joined in anyway. They were asked to leave but called it a win."
+    },
+    {
+        activity: "Rage Room Relationship Therapy",
+        story: "{host1} took {host2} to a rage room to 'work out their issues.' {host2} destroyed a printer while screaming their boss's name. {host1} accidentally hit themselves with a bat. The rage room employee said it was the most intense session they'd ever seen. They got a 20% discount on their next visit. There will be a next visit."
+    },
+    {
+        activity: "Goat Yoga Chaos",
+        story: "Goat yoga was peaceful for 3 minutes. Then a goat ate {host1}'s hair scrunchie. Another goat headbutted {host2} in the butt. {host1} screamed 'THIS WAS SUPPOSED TO BE RELAXING' while covered in goat. The instructor said the goats 'sensed their energy.' Their energy was chaos. The goats were right."
+    },
+    {
+        activity: "Thrift Store Fashion Show",
+        story: "{host1} and {host2} challenged each other to create the worst possible outfit for under $10. {host1} found a sequin vest from 1987. {host2} found pants that could only be described as 'medical.' They wore the outfits to dinner. The waiter assumed it was a costume party. It was not. They've never felt more alive."
+    },
+    {
+        activity: "DIY Spa Night Disaster",
+        story: "DIY spa night went wrong when {host1} left the face mask on too long and had a skin reaction. {host2} used the wrong kind of wax and removed part of their eyebrow. They spent the rest of the night in the ER. The doctor asked if they'd like relationship counseling resources. They said no. They should have said yes."
+    },
+    {
+        activity: "Competitive Mario Kart Night",
+        story: "Mario Kart seemed fun until {host1} blue-shelled {host2} on the final lap. {host2} didn't speak for 2 hours. {host1} won and immediately regretted it. The victory was hollow. The relationship was tested. They're in therapy now. The therapist said to 'maybe try co-op games instead.' They ignored the advice."
+    },
+    {
+        activity: "Couple's Boudoir Photoshoot",
+        story: "The boudoir photoshoot was {host2}'s anniversary gift. {host1} got stage fright. Then overcorrected. The photographer saw things they can never unsee. The photos are somehow both awkward AND inappropriate. They're in a locked drawer. They will never see the light of day. The photographer retired."
+    },
+    {
+        activity: "Speed Dating (Together)",
+        story: "{host1} and {host2} went to speed dating as a couple 'to mess with people.' They got way too committed to the bit. {host1} pretended to fall in love with someone else. {host2} cried real tears. The organizers asked them to leave. They were voted 'most dramatic couple' by attendees they'll never see again."
+    },
+    // === FINAL BATCH - EXTRA UNHINGED ===
+    {
+        activity: "Drunk Trivia Night",
+        story: "Trivia night started competitively. By round 3, {host1} was screaming wrong answers with full confidence. {host2} answered 'Nicolas Cage' to every question. They came in last place. Dead last. The winning team sent them pity drinks. {host1} challenged them to a rematch. They lost again. Nicolas Cage was never the answer."
+    },
+    {
+        activity: "Furniture Store Fake Living",
+        story: "{host1} and {host2} pretended to live in a furniture store display for 2 hours. They had fake arguments about fake bills. {host2} 'cooked' dinner on a display stove. A child asked if they lived there. They said yes. Security escorted them out. The child still believes."
+    },
+    {
+        activity: "Couple's Improv Class",
+        story: "Improv class seemed fun until {host1} had to improvise a breakup scene with {host2}. {host1} got too real. {host2} started actually defending their imaginary character. The class watched in horror. The teacher said 'this isn't improv anymore, this is therapy.' They've been in couples counseling since."
+    },
+    {
+        activity: "Escape the In-Laws Dinner",
+        story: "{host1} took {host2} to meet the parents. {host2} spilled wine on the carpet, called {host1}'s mom 'thick,' and accidentally revealed {host1}'s secret tattoo. {host1}'s dad laughed so hard he cried. {host1}'s mom is still processing the 'thick' comment. It was meant as a compliment. It did not land."
+    },
+    {
+        activity: "Sexy Scavenger Hunt",
+        story: "{host1} set up a 'sexy scavenger hunt' around the apartment. {host2} couldn't find the first clue. It was under the pillow. {host2} looked everywhere except under the pillow. For 45 minutes. By the time they finished, the mood was gone. They watched Netflix instead. The scavenger hunt will never be mentioned again."
+    },
+    {
+        activity: "Couple's YouTube Workout",
+        story: "{host1} and {host2} tried a couple's YouTube workout. {host2} pulled something in the first 5 minutes. {host1} was out of breath by minute 3. The instructor kept saying 'you've got this!' They did not have it. The video was 45 minutes. They stopped at 8. The couch won."
+    },
+    {
+        activity: "Midnight Taco Bell Run",
+        story: "The 2 AM Taco Bell run was supposed to be quick. {host1} ordered 47 items 'for the table.' There was no table. There was a parking lot. {host2} cried into their Crunchwrap. {host1} found God in a Baja Blast. They ate until they hated themselves. They'd do it again tomorrow."
+    },
+    {
+        activity: "Plant Shopping Emotional Journey",
+        story: "{host1} and {host2} went plant shopping and {host2} got attached to EVERY plant. They brought home 14 plants. They named them all. There was a funeral when one died. {host1} had to give a eulogy. For a succulent. Named Ricardo. Ricardo is survived by his plant siblings. He will be missed."
+    },
+    {
+        activity: "Karaoke Proposal Gone Wrong",
+        story: "{host1} planned to propose during karaoke. The song was 'I Will Always Love You.' {host1} cracked on the high note. Then forgot the words. Then dropped the ring in someone's drink. {host2} said yes anyway while fishing the ring out of a stranger's margarita. The stranger cried. Everyone cried."
+    },
+    {
+        activity: "Couple's TikTok Dance Challenge",
+        story: "{host1} wanted to go viral. {host2} wanted to stay home. They compromised: one TikTok dance. {host1} was surprisingly good. {host2} looked like a malfunctioning robot. The video got 3 million views. {host2}'s portion is now a meme. Their boss saw it. HR has questions. Worth it."
+    },
+    {
+        activity: "Axe Throwing First Date",
+        story: "Axe throwing seemed cool until {host2}'s axe bounced back. Toward {host1}. {host1} dodged and screamed. The instructor said that had 'never happened before.' It happened twice more. {host2} is now banned. {host1} has trust issues. They're weirdly closer now. Trauma bonding is real."
+    },
+    {
+        activity: "Renaissance Faire Romance",
+        story: "{host1} took {host2} to the Renaissance Faire. {host2} got TOO into character. Started calling {host1} 'm'lord' unironically. Challenged someone to a duel. With a turkey leg. Won the duel. {host1} has never been more attracted or confused. They now own medieval costumes. This is who they are now."
+    },
+    {
+        activity: "Glamping Gone Wrong",
+        story: "Glamping was supposed to be 'camping but fancy.' It was camping but expensive. {host1} was attacked by what they SWEAR was a bear. It was a large raccoon. {host2} tried to make s'mores and set their sleeve on fire. They drove home at 3 AM. The raccoon won. They stayed at a Marriott."
+    },
+    {
+        activity: "Ugly Sweater Bar Crawl",
+        story: "The ugly sweater bar crawl was festive until {host2}'s sweater got caught in a door and ripped off completely. {host1} gave them their sweater and was now just in a tank top. In December. They both got hypothermia. The photos are legendary. The hospital bill was not. No regrets."
+    },
+    {
+        activity: "Hot Ones Challenge Date",
+        story: "{host1} and {host2} tried the Hot Ones challenge at home. Neither made it past wing 4. {host2} cried. {host1} couldn't feel their face. They both called their moms. The milk didn't help. The ice cream didn't help. {host1} is pretty sure they saw God. The wings saw them cry. The wings remember."
+    },
+    {
+        activity: "Couple's Haunted House",
+        story: "The haunted house was {host1}'s idea. {host2} doesn't do haunted houses. {host2} punched an actor. On instinct. The actor understood. {host1} couldn't stop laughing. Then crying. Then both. {host2} has been asked to never return. They went back the next week. {host2} punched someone again. It's a problem."
+    },
+    {
+        activity: "Sunrise Hike Disaster",
+        story: "{host1} planned a romantic sunrise hike. {host2} is not a morning person. They got lost. Twice. {host2} fell in a stream. {host1} got poison ivy on their face. They saw the sunrise from an Urgent Care parking lot. It was still beautiful. {host2} will never wake up that early again."
+    },
+    {
+        activity: "Brewery Tour Bad Decisions",
+        story: "The brewery tour started educational. It ended with {host1} trying to fight the tour guide about hops. {host2} fell in love with a beer called 'Daddy's Juice' and wouldn't stop saying the name. Loudly. To strangers. They bought 4 cases. They don't like beer. They own 'Daddy's Juice' shirts now."
+    },
+    {
+        activity: "Blanket Fort Movie Marathon",
+        story: "{host1} built an elaborate blanket fort for movie night. It collapsed 20 minutes in. {host2} was trapped. {host1} couldn't stop laughing. {host2} wasn't laughing. The fort fell three more times. They gave up and watched movies like normal adults. The blankets are still everywhere. It's been 3 weeks."
+    },
+    {
+        activity: "Late Night Diner Confessions",
+        story: "3 AM at Denny's led to confessions neither were ready for. {host1} admitted they'd never seen Star Wars. {host2} admitted they didn't know how to ride a bike. The waitress (Karen, 67, seen some things) said those were both red flags. They're working through it. The pancakes helped. Karen is invited to the wedding."
+    }
+];
+
+// ============================================
+// STORY DECK MANAGEMENT - NO REPEATS
+// ============================================
+function resetStoryDeck() {
+    storyDeck = shuffleArray([...COMPLETE_SCENARIOS]);
 }
 
-function generateStory(host1, host2, activity) {
-    const opening = randomFrom(STORY_PARTS.openings);
-    const escalation = randomFrom(STORY_PARTS.escalations)
-        .replace('{host}', randomFrom([host1, host2]))
-        .replace('{object}', randomFrom(STORY_PARTS.objects))
-        .replace('{food}', randomFrom(STORY_PARTS.foods))
-        .replace('{animal}', randomFrom(STORY_PARTS.animals));
-    const quirk = randomFrom(STORY_PARTS.quirks);
-    
-    const roll = Math.random();
-    let outcomeType = roll < 0.35 ? 'disaster' : roll < 0.65 ? 'chaotic_good' : 'ambiguous';
-    const outcome = randomFrom(STORY_PARTS.outcomes[outcomeType])
-        .replace('{object}', randomFrom(STORY_PARTS.objects))
-        .replace('{host2}', host2);
-    
-    const storyStructures = [
-        `${opening} ${host1} invited ${host2} to ${activity.toLowerCase()}, and chaos ensued. ${escalation} ${quirk} ${outcome}`,
-        `${opening} ${escalation} All in the name of ${activity.toLowerCase()}. ${quirk} ${outcome}`,
-        `${host1} thought ${activity.toLowerCase()} would be romantic. ${host2} had other ideas. ${opening} ${escalation} ${outcome}`,
-        `${activity}. That's what ${host1} suggested for their first date with ${host2}. ${opening} ${escalation} ${outcome}`
-    ];
-    return randomFrom(storyStructures);
+function getNextStory() {
+    if (storyDeck.length === 0) resetStoryDeck();
+    return storyDeck.pop();
 }
 
-function calculateScore(story) {
-    let score = Math.floor(Math.random() * 100);
-    if (story.includes('perfect') || story.includes('wedding') || story.includes('💕')) score = Math.min(score + 35, 99);
-    if (story.includes('restraining') || story.includes('blocked') || story.includes('dead')) score = Math.max(score - 35, 1);
-    return score;
+// ============================================
+// CORE FUNCTIONS
+// ============================================
+function getHostImage(host) {
+    return CONFIG.useLocalImages 
+        ? `${CONFIG.imageBasePath}${host.image}`
+        : `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${host.name}&backgroundColor=1e293b`;
+}
+
+function calculateScore() {
+    // More varied scoring
+    const weights = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95];
+    return weights[Math.floor(Math.random() * weights.length)] + Math.floor(Math.random() * 5);
 }
 
 function getStatusIcon(score) {
     if (score > 80) return '💕';
     if (score > 60) return '💘';
-    if (score > 40) return '💔';
-    if (score > 20) return '😬';
+    if (score > 40) return '🔥';
+    if (score > 20) return '💔';
     return '☠️';
 }
 
@@ -528,6 +787,12 @@ function updateUI(host1, host2, activity, story, score) {
     document.getElementById('statusIcon').textContent = getStatusIcon(score);
 }
 
+// ============================================
+// HISTORY
+// ============================================
+let history = [];
+const MAX_HISTORY = 20;
+
 function addToHistory(data) {
     history.unshift(data);
     if (history.length > MAX_HISTORY) history.pop();
@@ -540,7 +805,7 @@ function updateHistoryUI() {
     list.innerHTML = history.map((item, i) => `
         <div class="history-item" onclick="loadFromHistory(${i})">
             <div class="hi-activity">💘 ${item.activity}</div>
-            <div class="hi-hosts">${item.host1} & ${item.host2} • ${item.score}% love</div>
+            <div class="hi-hosts">${item.host1} & ${item.host2} • ${item.score}%</div>
         </div>
     `).join('');
 }
@@ -554,71 +819,24 @@ function toggleHistory() {
     document.getElementById('historyPanel').classList.toggle('open');
 }
 
+// ============================================
+// ANIMATIONS
+// ============================================
 function shootHearts() {
     const container = document.getElementById('heartsContainer');
-    for (let i = 0; i < 10; i++) {
+    const hearts = ['💕', '💗', '💖', '💘', '❤️', '💝', '✨'];
+    for (let i = 0; i < 12; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.className = 'floating-heart';
-            heart.innerHTML = randomFrom(['💕', '💗', '💖', '💘', '❤️', '💝', '✨']);
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.left = `${30 + Math.random() * 40}%`;
-            heart.style.fontSize = `${20 + Math.random() * 20}px`;
-            heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+            heart.style.fontSize = `${20 + Math.random() * 25}px`;
+            heart.style.animationDuration = `${2 + Math.random() * 3}s`;
             container.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }, i * 100);
+            setTimeout(() => heart.remove(), 5000);
+        }, i * 80);
     }
-}
-
-async function generateChaos() {
-    const btn = document.getElementById('genBtn');
-    btn.disabled = true;
-    btn.textContent = '💘 CUPID IS AIMING...';
-    document.querySelector('.story-container').classList.add('loading');
-    shootHearts();
-    
-    await new Promise(r => setTimeout(r, 500));
-    
-    const [host1, host2] = selectTwoHosts();
-    const activity = generateActivity();
-    const story = generateStory(host1.name, host2.name, activity);
-    const score = calculateScore(story);
-    
-    updateUI(host1, host2, activity, story, score);
-    addToHistory({ host1: host1.name, host2: host2.name, host1Data: host1, host2Data: host2, activity, story, score });
-    
-    document.querySelector('.story-container').classList.remove('loading');
-    btn.disabled = false;
-    btn.textContent = '💘 SHOOT YOUR SHOT';
-}
-
-async function takeScreenshot() {
-    const element = document.getElementById('captureArea');
-    const buttons = element.querySelectorAll('.btn-group, .history-toggle, .history-panel');
-    buttons.forEach(b => b.style.display = 'none');
-    
-    try {
-        const canvas = await html2canvas(element, { backgroundColor: '#1a0a10', scale: 2, useCORS: true });
-        const link = document.getElementById('downloadLink');
-        link.download = `chaos-love-${Date.now()}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-        showToast('💕 Love letter saved!');
-    } catch (err) { showToast('Screenshot failed 💔'); }
-    
-    buttons.forEach(b => b.style.display = '');
-}
-
-function copyToClipboard() {
-    const text = `💘 CHAOS DATE GENERATOR 💘\n\n${document.getElementById('nameA').textContent} & ${document.getElementById('nameB').textContent}\nActivity: ${document.getElementById('activityTag').textContent}\n\n${document.getElementById('storyText').textContent}\n\nTrue Love Probability: ${document.getElementById('percentText').textContent}`;
-    navigator.clipboard.writeText(text).then(() => showToast('💌 Copied with love!')).catch(() => showToast('Copy failed 💔'));
-}
-
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
 function createFloatingHearts() {
@@ -627,7 +845,7 @@ function createFloatingHearts() {
     for (let i = 0; i < 20; i++) {
         const heart = document.createElement('div');
         heart.className = 'floating-heart';
-        heart.innerHTML = randomFrom(hearts);
+        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.left = `${Math.random() * 100}%`;
         heart.style.animationDelay = `${Math.random() * 12}s`;
         heart.style.animationDuration = `${10 + Math.random() * 8}s`;
@@ -647,9 +865,87 @@ function createSparkles() {
     }
 }
 
+// ============================================
+// MAIN GENERATION
+// ============================================
+async function generateChaos() {
+    const btn = document.getElementById('genBtn');
+    btn.disabled = true;
+    btn.textContent = '💘 CUPID IS AIMING...';
+    document.querySelector('.story-container').classList.add('loading');
+    shootHearts();
+    
+    await new Promise(r => setTimeout(r, 400));
+    
+    // Get unique hosts
+    const [host1, host2] = selectTwoHosts();
+    
+    // Get unique story (no repeats until deck is empty)
+    const scenario = getNextStory();
+    
+    // Replace placeholders with actual host names
+    const story = scenario.story
+        .replace(/{host1}/g, host1.name)
+        .replace(/{host2}/g, host2.name);
+    
+    const score = calculateScore();
+    
+    updateUI(host1, host2, scenario.activity, story, score);
+    addToHistory({ 
+        host1: host1.name, 
+        host2: host2.name, 
+        host1Data: host1, 
+        host2Data: host2, 
+        activity: scenario.activity, 
+        story, 
+        score 
+    });
+    
+    document.querySelector('.story-container').classList.remove('loading');
+    btn.disabled = false;
+    btn.textContent = '💘 SHOOT YOUR SHOT';
+}
+
+// ============================================
+// SCREENSHOT & SHARE
+// ============================================
+async function takeScreenshot() {
+    const element = document.getElementById('captureArea');
+    const buttons = element.querySelectorAll('.btn-group, .history-toggle, .history-panel');
+    buttons.forEach(b => b.style.display = 'none');
+    
+    try {
+        const canvas = await html2canvas(element, { backgroundColor: '#1a0a10', scale: 2, useCORS: true });
+        const link = document.getElementById('downloadLink');
+        link.download = `chaos-date-${Date.now()}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        showToast('💕 Saved!');
+    } catch (err) { showToast('Failed 💔'); }
+    
+    buttons.forEach(b => b.style.display = '');
+}
+
+function copyToClipboard() {
+    const text = `💘 CHAOS DATE GENERATOR 💘\n\n${document.getElementById('nameA').textContent} & ${document.getElementById('nameB').textContent}\n${document.getElementById('activityTag').textContent}\n\n${document.getElementById('storyText').textContent}\n\nLove Odds: ${document.getElementById('percentText').textContent}`;
+    navigator.clipboard.writeText(text).then(() => showToast('💌 Copied!')).catch(() => showToast('Failed 💔'));
+}
+
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// ============================================
+// INIT
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
     createFloatingHearts();
     createSparkles();
+    resetHostDeck();
+    resetStoryDeck();
 });
 
 document.addEventListener('keydown', (e) => {
@@ -661,3 +957,77 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+<script>
+// Additional scenarios to hit 100+
+const MORE_SCENARIOS = [
+    {
+        activity: "OnlyFans Consultation Meeting",
+        story: "{host1} joked about starting an OnlyFans. {host2} made a business plan. A real one. With projections. Now they're in too deep. The ring light arrived yesterday. {host1}'s mom follows them on Instagram. This is getting complicated."
+    },
+    {
+        activity: "Drunk Pottery Glazing",
+        story: "Wine and pottery glazing seemed artsy. {host1} glazed a mug that looked like a crime scene. {host2} accidentally wrote a slur thinking it said 'LOVE.' The instructor confiscated it. They're not welcome back. The mug is evidence now."
+    },
+    {
+        activity: "Couple's Crossfit Competition",
+        story: "{host1} wanted to try CrossFit together. {host2} threw up within 10 minutes. {host1} couldn't lift their arms for a week. The instructor called them 'soft.' They've never felt more attacked or more united against a common enemy."
+    },
+    {
+        activity: "Adult Arcade Date Night",
+        story: "Dave & Buster's after dark got competitive. {host1} spent $200 to win a stuffed prize worth $4. {host2} got hustled at air hockey by a 12-year-old. They left with 47 tickets and a broken spirit. The stuffed banana was worth it."
+    },
+    {
+        activity: "Cheese Wheel Heist",
+        story: "{host1} dared {host2} to steal a cheese wheel from Whole Foods. {host2} actually did it. The cheese wheel was $89. They're now bonded by crime. The cheese wheel sits in the fridge, judging them. They can't eat it. It knows what they did."
+    },
+    {
+        activity: "Couple's CBD Spa Day",
+        story: "The CBD spa seemed relaxing until {host1} had an allergic reaction and swelled up like a balloon. {host2} couldn't stop laughing. Then crying. Then laughing again. The spa refunded them and asked them to leave. {host1}'s face went back to normal. Eventually."
+    },
+    {
+        activity: "Drunk Mini Golf Championship",
+        story: "Mini golf was supposed to be wholesome. Alcohol changed that. {host1} threw their club in the water hazard. {host2} got their ball stuck in a windmill for 20 minutes. They never finished hole 9. The teenagers behind them slow clapped when they quit."
+    },
+    {
+        activity: "Late Night Laundromat Hang",
+        story: "The laundromat at midnight was unexpectedly romantic. {host1} and {host2} slow danced while the machines spun. Then {host1}'s underwear flew out. Onto a stranger. The stranger kept them. {host2} will never let {host1} forget."
+    },
+    {
+        activity: "Farmer's Market Couples Therapy",
+        story: "The farmer's market led to a fight about organic produce. {host2} called {host1} a 'kale hypocrite.' The honey vendor asked if they needed a moment. They bought $80 of jam they didn't need. They stress-ate all of it. The relationship survived."
+    },
+    {
+        activity: "Drunk Bob Ross Painting",
+        story: "Following a Bob Ross tutorial while drunk was {host2}'s idea. {host1}'s 'happy little trees' looked like screaming broccoli. {host2} painted the sky green. Bob would not be proud. They framed both paintings. Guests assume it's ironic. It's not."
+    },
+    {
+        activity: "Couple's Sensory Deprivation Tank",
+        story: "{host1} tried sensory deprivation for relaxation. {host2} panicked and starting banging on the tank. The staff came running. {host1} thought they were dying. They were not. They floated in trauma together. Very romantic."
+    },
+    {
+        activity: "Cat Cafe Emotional Breakdown",
+        story: "The cat cafe was supposed to be cute. {host2} got too attached to a cat named Mr. Whiskers. {host1} tried to adopt it. The cafe said no. {host2} cried. {host1} cried. Mr. Whiskers looked unbothered. They visit every week now. Mr. Whiskers still doesn't care."
+    },
+    {
+        activity: "Meal Prep Sunday Meltdown",
+        story: "Meal prepping together seemed domestic. It ended with {host1} screaming 'THAT'S NOT HOW YOU DICE AN ONION' and {host2} throwing chicken at the wall. The meal prep failed. They ordered pizza. They don't talk about Sunday anymore."
+    },
+    {
+        activity: "Couple's True Crime Investigation",
+        story: "{host1} and {host2} tried to solve a local cold case. They didn't solve it. They did accidentally trespass. And get questioned by actual police. And end up on a neighborhood watch list. Date night got too real."
+    },
+    {
+        activity: "Drunk LEGO Building Contest",
+        story: "Competitive LEGO building while drunk was a mistake. {host1} built something they called a 'spaceship.' It was three bricks. {host2} stepped on a piece and screamed for 10 minutes. The LEGO won. The floor is still dangerous."
+    },
+    {
+        activity: "Adult Hide and Seek",
+        story: "Adult hide and seek seemed fun until {host1} hid so well {host2} called the police. {host1} was in the dryer. For 2 hours. The cops were not amused. {host1} is now claustrophobic. They don't play games anymore."
+    }
+];
+
+// Add to main scenarios
+COMPLETE_SCENARIOS.push(...MORE_SCENARIOS);
+// Re-shuffle the deck with new scenarios
+resetStoryDeck();
+</script>
