@@ -1,0 +1,19 @@
+{
+  "name": "chaos-date-gen",
+  "version": "4.0.0",
+  "description": "Valentine's Edition - Chaotic date scenario generator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["chaos", "date", "generator", "valentine", "love"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

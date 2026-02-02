@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💘 Chaos Date Gen v4.0 - Valentine's Edition</title>
+    <meta name="description" content="Generate chaotic date scenarios with AI-powered storytelling">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --pink-light: #fce7f3;
+            --pink-medium: #f9a8d4;
+            --pink-hot: #ec4899;
+            --pink-deep: #db2777;
+            --pink-dark: #9d174d;
+            --rose: #e11d48;
+            --red-heart: #ef4444;
+            --purple-soft: #c084fc;
+            --gold: #fbbf24;
+            --bg-dark: #1a0a10;
+            --glass-bg: rgba(30, 10, 20, 0.75);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-dark);
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            color: white; overflow-x: hidden; padding: 20px; position: relative;
+        }
+        .bg-layer {
+            position: fixed; inset: 0; z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 0%, var(--pink-hot) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, var(--rose) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, var(--pink-deep) 0%, transparent 40%),
+                radial-gradient(ellipse at 0% 100%, var(--purple-soft) 0%, transparent 40%);
+            opacity: 0.5; animation: bgPulse 10s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.15); opacity: 0.6; }
+        }
+        .hearts-container { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+        .floating-heart {
+            position: absolute; font-size: 20px; animation: floatUp 12s infinite; opacity: 0;
+            filter: drop-shadow(0 0 10px var(--pink-hot));
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; } 90% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+        .cupid {
+            position: fixed; z-index: 2; pointer-events: none;
+            animation: cupidFloat 8s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(236, 72, 153, 0.5));
+        }
+        .cupid-left { top: 15%; left: 3%; width: 120px; }
+        .cupid-right { top: 20%; right: 3%; width: 100px; transform: scaleX(-1); animation: cupidFloatRight 8s ease-in-out infinite; animation-delay: -4s; }
+        @keyframes cupidFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes cupidFloatRight { 0%, 100% { transform: translateY(0) scaleX(-1); } 50% { transform: translateY(-20px) scaleX(-1); } }
+        .sparkle {
+            position: fixed; width: 10px; height: 10px; background: var(--gold);
+            border-radius: 50%; pointer-events: none; animation: sparkle 2s infinite;
+            box-shadow: 0 0 20px var(--gold), 0 0 40px var(--pink-hot);
+        }
+        @keyframes sparkle { 0%, 100% { transform: scale(0); opacity: 0; } 50% { transform: scale(1); opacity: 1; } }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 2px solid rgba(236, 72, 153, 0.3); border-radius: 32px;
+            padding: 40px; width: 100%; max-width: 650px;
+            box-shadow: 0 25px 50px -12px rgba(236, 72, 153, 0.4), 0 0 100px -20px var(--pink-hot);
+            text-align: center; position: relative; z-index: 10;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card::before {
+            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, var(--pink-hot), var(--rose), var(--purple-soft), var(--pink-hot));
+            border-radius: 34px; z-index: -1; opacity: 0.5;
+            animation: borderGlow 4s linear infinite; background-size: 300% 300%;
+        }
+        @keyframes borderGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass-card:hover { transform: translateY(-4px); }
+        .header { margin-bottom: 30px; }
+        .logo {
+            font-family: 'Pacifico', cursive; font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-hot), var(--rose));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .version { font-size: 0.65rem; opacity: 0.6; color: var(--pink-medium); letter-spacing: 2px; }
+        .avatar-row { display: flex; justify-content: center; align-items: center; gap: 24px; margin-bottom: 30px; }
+        .avatar-container { position: relative; }
+        .avatar-container img {
+            width: 130px; height: 130px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-dark), var(--bg-dark));
+            border: 4px solid var(--pink-hot); object-fit: cover;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+        }
+        .avatar-container img:hover { transform: scale(1.08); border-color: var(--rose); }
+        .avatar-name {
+            position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--pink-hot), var(--rose));
+            padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap;
+        }
+        .heart-icon { font-size: 3.5rem; filter: drop-shadow(0 0 30px var(--pink-hot)); animation: heartbeat 1s ease-in-out infinite; }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.25); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } }
+        .activity-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink-hot), var(--rose), var(--pink-deep));
+            padding: 14px 32px; border-radius: 100px; font-weight: 700; text-transform: uppercase;
+            font-size: 0.85rem; margin-bottom: 24px; letter-spacing: 1.5px;
+            box-shadow: 0 10px 30px -10px var(--rose); position: relative; overflow: hidden;
+        }
+        .activity-tag::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer { 100% { left: 100%; } }
+        .story-text {
+            font-size: 1.1rem; line-height: 1.9; background: rgba(0, 0, 0, 0.4);
+            padding: 28px; border-radius: 20px; text-align: left;
+            border: 1px solid rgba(236, 72, 153, 0.2); min-height: 160px;
+            color: var(--pink-light); position: relative;
+        }
+        .story-text::before { content: '💕'; position: absolute; top: 15px; left: 15px; font-size: 2rem; opacity: 0.3; }
+        .story-text::after { content: '💕'; position: absolute; bottom: 15px; right: 15px; font-size: 2rem; opacity: 0.3; }
+        .stats-row { display: flex; justify-content: center; margin: 24px 0; }
+        .stat-block { text-align: center; }
+        .label { opacity: 0.7; text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; color: var(--pink-medium); }
+        .percentage {
+            font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; font-weight: 700; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-hot), var(--rose));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .love-meter { width: 100%; height: 12px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 12px; }
+        .love-fill {
+            height: 100%; background: linear-gradient(90deg, var(--pink-hot), var(--rose), var(--red-heart), var(--pink-hot));
+            background-size: 200% 100%; border-radius: 10px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: loveShimmer 2s linear infinite; position: relative;
+        }
+        .love-fill::after { content: '💗'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; }
+        @keyframes loveShimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        .btn-group { display: flex; gap: 12px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+        button {
+            padding: 18px 32px; border-radius: 50px; border: none; font-weight: 700;
+            cursor: pointer; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+        }
+        .gen-btn {
+            background: linear-gradient(135deg, var(--pink-hot), var(--rose));
+            color: white; flex-grow: 2; min-width: 200px;
+            box-shadow: 0 10px 30px -10px var(--rose);
+        }
+        .gen-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px -15px var(--rose); }
+        .snap-btn, .share-btn {
+            background: rgba(236, 72, 153, 0.2); color: var(--pink-light);
+            border: 2px solid rgba(236, 72, 153, 0.4);
+        }
+        .snap-btn:hover, .share-btn:hover { background: rgba(236, 72, 153, 0.3); border-color: var(--pink-hot); transform: translateY(-2px); }
+        .history-toggle {
+            background: transparent; border: 2px dashed rgba(236, 72, 153, 0.3);
+            color: var(--pink-medium); font-size: 0.8rem; padding: 10px 20px; margin-top: 20px; border-radius: 50px;
+        }
+        .history-toggle:hover { border-color: var(--pink-hot); color: var(--pink-light); }
+        .history-panel { max-height: 0; overflow: hidden; transition: max-height 0.5s; }
+        .history-panel.open { max-height: 400px; }
+        .history-list { margin-top: 20px; max-height: 300px; overflow-y: auto; padding: 10px; }
+        .history-item {
+            background: rgba(236, 72, 153, 0.1); padding: 12px; border-radius: 12px;
+            margin-bottom: 10px; text-align: left; font-size: 0.85rem;
+            border: 1px solid rgba(236, 72, 153, 0.2); cursor: pointer; transition: all 0.2s;
+        }
+        .history-item:hover { background: rgba(236, 72, 153, 0.2); transform: translateX(5px); }
+        .history-item .hi-activity { color: var(--pink-hot); font-weight: 700; font-size: 0.75rem; }
+        .history-item .hi-hosts { opacity: 0.6; font-size: 0.7rem; margin-top: 4px; color: var(--pink-light); }
+        .loading .story-text { animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, var(--pink-hot), var(--rose));
+            padding: 16px 28px; border-radius: 50px; font-size: 0.9rem; z-index: 1000; opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        @media (max-width: 700px) { .cupid { display: none; } }
+        @media (max-width: 600px) {
+            .glass-card { padding: 24px; border-radius: 24px; }
+            .logo { font-size: 1.4rem; }
+            .avatar-container img { width: 100px; height: 100px; }
+            .avatar-row { gap: 16px; }
+            .heart-icon { font-size: 2.5rem; }
+            .percentage { font-size: 2.8rem; }
+            .story-text { font-size: 1rem; padding: 20px; }
+            .btn-group { flex-direction: column; }
+            button { width: 100%; }
+        }
+        #downloadLink { display: none; }
+    </style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="hearts-container" id="heartsContainer"></div>
+
+<!-- Cupid Left -->
+<svg class="cupid cupid-left" viewBox="0 0 100 100" fill="none">
+    <defs><linearGradient id="cupidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#fce7f3"/><stop offset="100%" style="stop-color:#f9a8d4"/>
+    </linearGradient></defs>
+    <ellipse cx="50" cy="55" rx="18" ry="20" fill="url(#cupidGrad)"/>
+    <circle cx="50" cy="30" r="15" fill="url(#cupidGrad)"/>
+    <ellipse cx="28" cy="45" rx="15" ry="22" fill="#fce7f3" opacity="0.8"/>
+    <ellipse cx="72" cy="45" rx="15" ry="22" fill="#fce7f3" opacity="0.8"/>
+    <path d="M75 50 Q90 30 75 15" stroke="#fbbf24" stroke-width="3" fill="none"/>
+    <path d="M75 50 Q90 70 75 85" stroke="#fbbf24" stroke-width="3" fill="none"/>
+    <line x1="75" y1="15" x2="75" y2="85" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="75" y1="50" x2="95" y2="50" stroke="#fbbf24" stroke-width="2"/>
+    <polygon points="95,50 90,46 90,54" fill="#ec4899"/>
+    <circle cx="45" cy="28" r="2" fill="#9d174d"/><circle cx="55" cy="28" r="2" fill="#9d174d"/>
+    <path d="M46 34 Q50 38 54 34" stroke="#ec4899" stroke-width="2" fill="none"/>
+    <ellipse cx="50" cy="12" rx="12" ry="4" stroke="#fbbf24" stroke-width="2" fill="none"/>
+</svg>
+
+<!-- Cupid Right -->
+<svg class="cupid cupid-right" viewBox="0 0 100 100" fill="none">
+    <defs><linearGradient id="cupidGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#fce7f3"/><stop offset="100%" style="stop-color:#f9a8d4"/>
+    </linearGradient></defs>
+    <ellipse cx="50" cy="55" rx="18" ry="20" fill="url(#cupidGrad2)"/>
+    <circle cx="50" cy="30" r="15" fill="url(#cupidGrad2)"/>
+    <ellipse cx="28" cy="45" rx="15" ry="22" fill="#fce7f3" opacity="0.8"/>
+    <ellipse cx="72" cy="45" rx="15" ry="22" fill="#fce7f3" opacity="0.8"/>
+    <path d="M75 50 Q90 30 75 15" stroke="#fbbf24" stroke-width="3" fill="none"/>
+    <path d="M75 50 Q90 70 75 85" stroke="#fbbf24" stroke-width="3" fill="none"/>
+    <line x1="75" y1="15" x2="75" y2="85" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="75" y1="50" x2="95" y2="50" stroke="#fbbf24" stroke-width="2"/>
+    <polygon points="95,50 90,46 90,54" fill="#ec4899"/>
+    <circle cx="45" cy="28" r="2" fill="#9d174d"/><circle cx="55" cy="28" r="2" fill="#9d174d"/>
+    <path d="M46 34 Q50 38 54 34" stroke="#ec4899" stroke-width="2" fill="none"/>
+    <ellipse cx="50" cy="12" rx="12" ry="4" stroke="#fbbf24" stroke-width="2" fill="none"/>
+</svg>
+
+<div class="glass-card" id="captureArea">
+    <div class="header">
+        <div class="logo">💘 Chaos Date Generator 💘</div>
+        <div class="version">✨ Valentine's Edition v4.0 ✨</div>
+    </div>
+    <div class="avatar-row">
+        <div class="avatar-container">
+            <img id="hostA" src="assets/hosts/Albert.png" alt="Host A">
+            <span id="nameA" class="avatar-name">???</span>
+        </div>
+        <div class="heart-icon" id="statusIcon">💘</div>
+        <div class="avatar-container">
+            <img id="hostB" src="assets/hosts/ALR.png" alt="Host B">
+            <span id="nameB" class="avatar-name">???</span>
+        </div>
+    </div>
+    <div id="activityTag" class="activity-tag">💕 Cupid's Chaos Awaits 💕</div>
+    <div class="story-container">
+        <div id="storyText" class="story-text">
+            Welcome to love's battlefield, darling. Click <strong>SHOOT YOUR SHOT</strong> to witness how Cupid's arrow creates beautiful disasters between two unsuspecting souls...
+        </div>
+    </div>
+    <div class="stats-row">
+        <div class="stat-block">
+            <div class="label">💗 True Love Probability 💗</div>
+            <div id="percentText" class="percentage">--</div>
+            <div class="love-meter"><div id="loveFill" class="love-fill" style="width: 0%"></div></div>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="gen-btn" onclick="generateChaos()" id="genBtn">💘 SHOOT YOUR SHOT</button>
+        <button class="snap-btn" onclick="takeScreenshot()" title="Save as image">📸</button>
+        <button class="share-btn" onclick="copyToClipboard()" title="Copy to clipboard">💌</button>
+    </div>
+    <button class="history-toggle" onclick="toggleHistory()">📜 Love Letters (<span id="historyCount">0</span>)</button>
+    <div class="history-panel" id="historyPanel"><div class="history-list" id="historyList"></div></div>
+</div>
+<div class="toast" id="toast">Copied to clipboard!</div>
+<a id="downloadLink"></a>
+
+<script>
+const CONFIG = {
+    useLocalImages: true,
+    hosts: [
+        { name: "Albert", image: "Albert.png", fallback: "Albert" },
+        { name: "ALR", image: "ALR.png", fallback: "ALR" },
+        { name: "A-Mac", image: "A-Mac.png", fallback: "AMac" },
+        { name: "Angie", image: "Angie.png", fallback: "Angie" },
+        { name: "Batgorl", image: "Batgorl.png", fallback: "Batgorl" },
+        { name: "Billy", image: "Billy.png", fallback: "Billy" },
+        { name: "Boogie", image: "Boogie.png", fallback: "Boogie" },
+        { name: "Cherry", image: "Cherry.png", fallback: "Cherry" },
+        { name: "Gidgy", image: "Gidgy.png", fallback: "Gidgy" },
+        { name: "Glamy", image: "Glamy.png", fallback: "Glamy" },
+        { name: "Grimm", image: "Grimm.png", fallback: "Grimm" },
+        { name: "Ice", image: "Ice.png", fallback: "Ice" },
+        { name: "Jaffee", image: "Jaffee.png", fallback: "Jaffee" },
+        { name: "Jeff", image: "Jeff.png", fallback: "Jeff" },
+        { name: "Josh", image: "Josh.png", fallback: "Josh" },
+        { name: "Ken", image: "Ken.png", fallback: "Ken" },
+        { name: "Knightmare", image: "Knightmare.png", fallback: "Knightmare" },
+        { name: "Lici", image: "Lici.png", fallback: "Lici" },
+        { name: "Lucy", image: "Lucy.png", fallback: "Lucy" },
+        { name: "Mel", image: "Mel.png", fallback: "Mel" },
+        { name: "NickMTV", image: "NickMTV.png", fallback: "NickMTV" },
+        { name: "Pesci", image: "Pesci.png", fallback: "Pesci" },
+        { name: "Phantom", image: "Phantom.png", fallback: "Phantom" },
+        { name: "Scooter", image: "Scooter.png", fallback: "Scooter" },
+        { name: "Smooch", image: "Smooch.png", fallback: "Smooch" },
+        { name: "Stake", image: "Stake.png", fallback: "Stake" },
+        { name: "Sweet_Tea", image: "Sweet_Tea.png", fallback: "SweetTea" },
+        { name: "Tech", image: "Tech.png", fallback: "Tech" },
+        { name: "Tina", image: "Tina.png", fallback: "Tina" },
+        { name: "Tommy", image: "Tommy.png", fallback: "Tommy" },
+        { name: "Twiggy", image: "Twiggy.png", fallback: "Twiggy" },
+        { name: "WonderWoman", image: "WonderWoman.png", fallback: "WonderWoman" },
+        { name: "Xylie", image: "Xylie.png", fallback: "Xylie" },
+        { name: "Yomama", image: "Yomama.png", fallback: "Yomama" },
+        { name: "Zey", image: "Zey.png", fallback: "Zey" },
+        { name: "Zita", image: "Zita.png", fallback: "Zita" },
+    ],
+    imageBasePath: "assets/hosts/"
+};
+
+const STORY_PARTS = {
+    openings: [
+        "Cupid was drunk on the job again.",
+        "Love works in mysterious (and stupid) ways.",
+        "The heart wants what it wants. The restraining order says otherwise.",
+        "Some love stories are written in the stars. This one was written on a napkin at Denny's.",
+        "They say love is blind. This love is also deaf and possibly concussed.",
+        "When Cupid's arrow hits, it doesn't always hit right.",
+        "The universe conspired to bring them together. The universe was having a bad day.",
+        "Every love story is beautiful. This one is... something.",
+        "Romeo and Juliet had nothing on this disaster.",
+        "Hearts collided. So did their criminal records.",
+        "It was love at first restraining order.",
+        "Fate works in mysterious ways. This was just chaotic."
+    ],
+    activityPrefixes: [
+        "romantic", "candlelit", "disastrous", "forbidden", "chaotic",
+        "unhinged", "midnight", "cursed", "viral", "weaponized",
+        "improvised", "apocalyptic", "bottomless", "haunted", "competitive"
+    ],
+    activityCores: [
+        "wine tasting", "couples therapy", "salsa dancing", "escape room",
+        "pottery class", "karaoke battle", "cooking class", "sunset watching",
+        "love poem reading", "chocolate fountain diving", "speed dating",
+        "astrology reading", "couples yoga", "tandem skydiving", "proposal practice",
+        "wedding crashing", "divorce celebration", "exorcism", "tax fraud",
+        "goat yoga", "seance", "knife juggling", "identity theft workshop",
+        "bread making", "axe throwing", "tarot reading", "ghost hunting"
+    ],
+    activitySuffixes: [
+        "at an Olive Garden", "in a Costco parking lot", "during a full moon",
+        "at an ex's wedding", "in international waters", "at couples therapy",
+        "on a sinking boat", "in the ball pit at Chuck E. Cheese", "at IKEA",
+        "during a blackout", "in a confessional booth", "at a timeshare presentation",
+        "in the Taco Bell drive-thru", "at the DMV", "in a Waffle House at 3 AM",
+        "behind a Wendy's dumpster", "at a funeral", "during a meteor shower"
+    ],
+    escalations: [
+        "Things got spicy when {host} confessed their love... to the waiter.",
+        "The mood shifted when {host} started ugly crying into the {food}.",
+        "Romance died when the {object} incident happened.",
+        "Cupid would be ashamed. {host} proposed with a {object}.",
+        "{host}'s ex showed up. Then their other ex. Then a third.",
+        "The night took a turn when {host} revealed their collection of {object}s.",
+        "Security escorted them out after the {object} situation.",
+        "Their Uber driver is now a witness in the investigation.",
+        "{host} got down on one knee... to tie their shoe and run away.",
+        "The chef came out to personally ask them to never return.",
+        "A {animal} got loose. Nobody knows who brought it.",
+        "The fire department was called. Twice."
+    ],
+    objects: [
+        "heart-shaped box of regret", "wilted rose", "restraining order",
+        "engagement ring from a vending machine", "ex's hoodie", "divorce papers",
+        "emotional baggage", "crying toddler", "someone else's wedding cake",
+        "taxidermied dove", "couples therapy bill", "love poem in Comic Sans",
+        "Build-A-Bear breakup letter", "matching tattoo removal quote", "catfish photos",
+        "haunted engagement ring", "cursed Valentine's card", "body pillow"
+    ],
+    foods: [
+        "heart-shaped pizza", "chocolate fondue", "bottomless mimosas",
+        "couples spaghetti", "oysters", "strawberries", "wedding cake samples",
+        "gas station roses", "Olive Garden breadsticks", "melted ice cream cake"
+    ],
+    animals: [
+        "emotional support peacock", "feral raccoon", "angry goose",
+        "escaped ferret", "judgmental cat", "confused llama", "therapy alpaca"
+    ],
+    outcomes: {
+        disaster: [
+            "Cupid has filed a formal complaint. Love is dead. {host2} has blocked everyone involved.",
+            "The restraining order is mutual, but the trauma bond is eternal.",
+            "They've both sworn off love forever. They'll meet again at the same bar next Friday.",
+            "The only thing they're committed to now is therapy. Separately.",
+            "Love didn't win today. Neither did anyone's dignity.",
+            "Their love story ends not with a bang, but with a blocked number and a Yelp review."
+        ],
+        chaotic_good: [
+            "Against all odds and several felonies, they're planning date two. 💕",
+            "It was chaos. It was beautiful. The wedding's in Vegas next month.",
+            "They found love in a hopeless place (the county jail waiting room). True romance.",
+            "Somehow, miraculously, disgustingly... they're perfect for each other.",
+            "Cupid is confused but supportive. Love wins in the weirdest way possible.",
+            "They're terrible influences on each other and that's exactly what they both needed. 💘"
+        ],
+        ambiguous: [
+            "It's complicated. Their relationship status? Also complicated. Everything is complicated.",
+            "They exchanged numbers. And lawyers. The future is uncertain but entertaining.",
+            "The {object} will haunt them both forever, but maybe that's romantic?",
+            "Neither knows what they are, but they've agreed to circle back after the trial.",
+            "Love? Maybe. Chaos? Definitely. Regrets? Ask again tomorrow.",
+            "Cupid shot his shot. It ricocheted. The results are inconclusive."
+        ]
+    },
+    quirks: [
+        "The restaurant is pressing charges AND writing a Yelp response.",
+        "Their love language is apparently 'public disturbance.'",
+        "A violinist quit mid-song and left.",
+        "The couple at the next table is now also broken up.",
+        "Someone's mother was called. She's on her way with reinforcements.",
+        "Local news is calling it 'the most romantic arrest of the year.'",
+        "A flash mob started accidentally during the chaos.",
+        "The chocolate fountain will never be the same.",
+        "Their Uber rating dropped to 2.1 stars.",
+        "Insurance won't cover any of it."
+    ]
+};
+
+let usedActivities = new Set();
+let history = [];
+const MAX_HISTORY = 20;
+
+function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function getHostImage(host) {
+    return CONFIG.useLocalImages 
+        ? `${CONFIG.imageBasePath}${host.image}`
+        : `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${host.fallback}&backgroundColor=1e293b`;
+}
+
+function selectTwoHosts() {
+    const shuffled = [...CONFIG.hosts].sort(() => Math.random() - 0.5);
+    return [shuffled[0], shuffled[1]];
+}
+
+function generateActivity() {
+    let activity, attempts = 0;
+    do {
+        const prefix = randomFrom(STORY_PARTS.activityPrefixes);
+        const core = randomFrom(STORY_PARTS.activityCores);
+        const suffix = randomFrom(STORY_PARTS.activitySuffixes);
+        const structures = [
+            `${prefix} ${core} ${suffix}`,
+            `${core} ${suffix}`,
+            `${prefix} ${core}`,
+            `The ${core} incident ${suffix}`
+        ];
+        activity = randomFrom(structures);
+        attempts++;
+    } while (usedActivities.has(activity) && attempts < 50);
+    
+    if (attempts < 50) usedActivities.add(activity);
+    if (usedActivities.size > 100) usedActivities.clear();
+    return activity.charAt(0).toUpperCase() + activity.slice(1);
+}
+
+function generateStory(host1, host2, activity) {
+    const opening = randomFrom(STORY_PARTS.openings);
+    const escalation = randomFrom(STORY_PARTS.escalations)
+        .replace('{host}', randomFrom([host1, host2]))
+        .replace('{object}', randomFrom(STORY_PARTS.objects))
+        .replace('{food}', randomFrom(STORY_PARTS.foods))
+        .replace('{animal}', randomFrom(STORY_PARTS.animals));
+    const quirk = randomFrom(STORY_PARTS.quirks);
+    
+    const roll = Math.random();
+    let outcomeType = roll < 0.35 ? 'disaster' : roll < 0.65 ? 'chaotic_good' : 'ambiguous';
+    const outcome = randomFrom(STORY_PARTS.outcomes[outcomeType])
+        .replace('{object}', randomFrom(STORY_PARTS.objects))
+        .replace('{host2}', host2);
+    
+    const storyStructures = [
+        `${opening} ${host1} invited ${host2} to ${activity.toLowerCase()}, and chaos ensued. ${escalation} ${quirk} ${outcome}`,
+        `${opening} ${escalation} All in the name of ${activity.toLowerCase()}. ${quirk} ${outcome}`,
+        `${host1} thought ${activity.toLowerCase()} would be romantic. ${host2} had other ideas. ${opening} ${escalation} ${outcome}`,
+        `${activity}. That's what ${host1} suggested for their first date with ${host2}. ${opening} ${escalation} ${outcome}`
+    ];
+    return randomFrom(storyStructures);
+}
+
+function calculateScore(story) {
+    let score = Math.floor(Math.random() * 100);
+    if (story.includes('perfect') || story.includes('wedding') || story.includes('💕')) score = Math.min(score + 35, 99);
+    if (story.includes('restraining') || story.includes('blocked') || story.includes('dead')) score = Math.max(score - 35, 1);
+    return score;
+}
+
+function getStatusIcon(score) {
+    if (score > 80) return '💕';
+    if (score > 60) return '💘';
+    if (score > 40) return '💔';
+    if (score > 20) return '😬';
+    return '☠️';
+}
+
+function updateUI(host1, host2, activity, story, score) {
+    document.getElementById('hostA').src = getHostImage(host1);
+    document.getElementById('hostB').src = getHostImage(host2);
+    document.getElementById('nameA').textContent = host1.name;
+    document.getElementById('nameB').textContent = host2.name;
+    document.getElementById('activityTag').textContent = `💕 ${activity} 💕`;
+    document.getElementById('storyText').innerHTML = story;
+    document.getElementById('percentText').textContent = `${score}%`;
+    document.getElementById('loveFill').style.width = `${score}%`;
+    document.getElementById('statusIcon').textContent = getStatusIcon(score);
+}
+
+function addToHistory(data) {
+    history.unshift(data);
+    if (history.length > MAX_HISTORY) history.pop();
+    updateHistoryUI();
+}
+
+function updateHistoryUI() {
+    const list = document.getElementById('historyList');
+    document.getElementById('historyCount').textContent = history.length;
+    list.innerHTML = history.map((item, i) => `
+        <div class="history-item" onclick="loadFromHistory(${i})">
+            <div class="hi-activity">💘 ${item.activity}</div>
+            <div class="hi-hosts">${item.host1} & ${item.host2} • ${item.score}% love</div>
+        </div>
+    `).join('');
+}
+
+function loadFromHistory(index) {
+    const item = history[index];
+    updateUI(item.host1Data, item.host2Data, item.activity, item.story, item.score);
+}
+
+function toggleHistory() {
+    document.getElementById('historyPanel').classList.toggle('open');
+}
+
+function shootHearts() {
+    const container = document.getElementById('heartsContainer');
+    for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = randomFrom(['💕', '💗', '💖', '💘', '❤️', '💝', '✨']);
+            heart.style.left = `${30 + Math.random() * 40}%`;
+            heart.style.fontSize = `${20 + Math.random() * 20}px`;
+            heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, i * 100);
+    }
+}
+
+async function generateChaos() {
+    const btn = document.getElementById('genBtn');
+    btn.disabled = true;
+    btn.textContent = '💘 CUPID IS AIMING...';
+    document.querySelector('.story-container').classList.add('loading');
+    shootHearts();
+    
+    await new Promise(r => setTimeout(r, 500));
+    
+    const [host1, host2] = selectTwoHosts();
+    const activity = generateActivity();
+    const story = generateStory(host1.name, host2.name, activity);
+    const score = calculateScore(story);
+    
+    updateUI(host1, host2, activity, story, score);
+    addToHistory({ host1: host1.name, host2: host2.name, host1Data: host1, host2Data: host2, activity, story, score });
+    
+    document.querySelector('.story-container').classList.remove('loading');
+    btn.disabled = false;
+    btn.textContent = '💘 SHOOT YOUR SHOT';
+}
+
+async function takeScreenshot() {
+    const element = document.getElementById('captureArea');
+    const buttons = element.querySelectorAll('.btn-group, .history-toggle, .history-panel');
+    buttons.forEach(b => b.style.display = 'none');
+    
+    try {
+        const canvas = await html2canvas(element, { backgroundColor: '#1a0a10', scale: 2, useCORS: true });
+        const link = document.getElementById('downloadLink');
+        link.download = `chaos-love-${Date.now()}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        showToast('💕 Love letter saved!');
+    } catch (err) { showToast('Screenshot failed 💔'); }
+    
+    buttons.forEach(b => b.style.display = '');
+}
+
+function copyToClipboard() {
+    const text = `💘 CHAOS DATE GENERATOR 💘\n\n${document.getElementById('nameA').textContent} & ${document.getElementById('nameB').textContent}\nActivity: ${document.getElementById('activityTag').textContent}\n\n${document.getElementById('storyText').textContent}\n\nTrue Love Probability: ${document.getElementById('percentText').textContent}`;
+    navigator.clipboard.writeText(text).then(() => showToast('💌 Copied with love!')).catch(() => showToast('Copy failed 💔'));
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+function createFloatingHearts() {
+    const container = document.getElementById('heartsContainer');
+    const hearts = ['💕', '💗', '💖', '💘', '❤️', '💝', '✨'];
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.innerHTML = randomFrom(hearts);
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDelay = `${Math.random() * 12}s`;
+        heart.style.animationDuration = `${10 + Math.random() * 8}s`;
+        heart.style.fontSize = `${15 + Math.random() * 20}px`;
+        container.appendChild(heart);
+    }
+}
+
+function createSparkles() {
+    for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.animationDelay = `${Math.random() * 2}s`;
+        document.body.appendChild(sparkle);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    createFloatingHearts();
+    createSparkles();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+        e.preventDefault();
+        generateChaos();
+    }
+});
+</script>
+</body>
+</html>
